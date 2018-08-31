@@ -96,15 +96,15 @@ build/lib/rv32/libuart_coreip_e2_arty.a: build/obj/rv32/libuart/uart_coreip_e2_a
 # Target environment definitions
 #
 
-configs = rv32:spike:libuart_spike_htif.a \
-          rv64:spike:libuart_spike_htif.a \
-          rv32:virt:libuart_virt_16550.a \
-          rv64:virt:libuart_virt_16550.a \
-          rv32:qemu-sifive_e:libuart_qemu_sifive.a \
-          rv64:qemu-sifive_e:libuart_qemu_sifive.a \
-          rv32:qemu-sifive_u:libuart_qemu_sifive.a \
-          rv64:qemu-sifive_u:libuart_qemu_sifive.a \
-          rv32:coreip-e2-arty::libuart_coreip_e2_arty.a
+configs ?= rv32:spike:libuart_spike_htif.a \
+           rv64:spike:libuart_spike_htif.a \
+           rv32:virt:libuart_virt_16550.a \
+           rv64:virt:libuart_virt_16550.a \
+           rv32:qemu-sifive_e:libuart_qemu_sifive.a \
+           rv64:qemu-sifive_e:libuart_qemu_sifive.a \
+           rv32:qemu-sifive_u:libuart_qemu_sifive.a \
+           rv64:qemu-sifive_u:libuart_qemu_sifive.a \
+           rv32:coreip-e2-arty::libuart_coreip_e2_arty.a
 
 #
 # Build system functions to generate build rules for examples
