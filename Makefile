@@ -19,6 +19,9 @@ LIBFEMTO_OBJS      = $(patsubst %.s,%.o,$(LIBFEMTO_ASM)) \
 LIBFEMTO_RV32_OBJ  = $(addprefix build/obj/rv32/,$(LIBFEMTO_OBJS))
 LIBFEMTO_RV64_OBJ  = $(addprefix build/obj/rv64/,$(LIBFEMTO_OBJS))
 
+# Allows me to pass commas (in -Wl,--start-group) through make functions.
+comma=,
+
 #
 # make rules
 #
@@ -123,7 +126,7 @@ config_lib = $(word 3,$(subst :, ,$(1)))
 define rule =
 build/bin/$(3)/$(4)/$(1): $(2) build/lib/$(3)/libfemto.a build/lib/$(3)/$(5)
 	$$(call cmd,LD.$(3) $$@,$$(@D),$(CC_$(3)) $$(LDFLAGS) \
-	-T env/$(4)/default.lds $$^ -o $$@)
+	-T env/$(4)/default.lds -Wl$$(comma)--start-group $$(shell cat env/$(4)/default.ldflags) $$^ -Wl$$(comma)--end-group -o $$@)
 endef
 
 define module =
