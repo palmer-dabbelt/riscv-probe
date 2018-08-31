@@ -95,6 +95,12 @@ build/lib/rv64/libuart_virt_16550.a: build/obj/rv64/libuart/uart_virt_16550.o
 build/lib/rv32/libuart_coreip_e2_arty.a: build/obj/rv32/libuart/uart_coreip_e2_arty.o
 	$(call cmd,AR.rv32 $@,$(@D),$(AR) cr $@ $^)
 
+build/lib/rv32/libuart_mee.a: build/obj/rv32/libuart/uart_mee.o
+	$(call cmd,AR.rv32 $@,$(@D),$(AR) cr $@ $^)
+
+build/lib/rv64/libuart_mee.a: build/obj/rv64/libuart/uart_mee.o
+	$(call cmd,AR.rv64 $@,$(@D),$(AR) cr $@ $^)
+
 #
 # Target environment definitions
 #
@@ -107,7 +113,8 @@ configs ?= rv32:spike:libuart_spike_htif.a \
            rv64:qemu-sifive_e:libuart_qemu_sifive.a \
            rv32:qemu-sifive_u:libuart_qemu_sifive.a \
            rv64:qemu-sifive_u:libuart_qemu_sifive.a \
-           rv32:coreip-e2-arty::libuart_coreip_e2_arty.a
+           rv32:coreip-e2-arty::libuart_coreip_e2_arty.a \
+           rv32:mee-sifive-hifive1:libuart_mee.a
 
 #
 # Build system functions to generate build rules for examples
